@@ -72,16 +72,16 @@ Vagrant.configure("2") do |config|
     chef.data_bags_path = "data_bags"
     chef.json = {
       "openvpn" => {
-        "gateway" => "vpn.example.com",
-        "subnet" => "10.8.0.0",
-        "netmask" => "255.255.0.0",
+        "gateway"         => "vpn.example.com",
+        "subnet"          => "10.8.0.0",
+        "netmask"         => "255.255.0.0",
         "script_security" => 2,
         "key" => {
-          "country" => "US",
+          "country"  => "US",
           "province" => "CA",
-          "city" => "SanFrancisco",
-          "org" => "Fort-Funston",
-          "email" => "me@example.com"
+          "city"     => "SanFrancisco",
+          "org"      => "Fort-Funston",
+          "email"    => "me@example.com"
         },
         "routes" => [
           "push 'route 192.168.100.0 255.255.255.0'"
