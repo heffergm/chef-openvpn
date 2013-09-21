@@ -23,8 +23,7 @@ node.default['openvpn']['routes'] = routes.flatten
 
 crl_dir = node["openvpn"]["crl_dir"]
 key_dir = node["openvpn"]["key_dir"]
-#key_size = node["openvpn"]["key"]["size"]
-key_size = 2048
+key_size = node["openvpn"]["key"]["size"]
 
 package "openvpn" do
   action :install
