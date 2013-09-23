@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.hostname = "openvpn:"
+  config.vm.hostname = "openvpn"
 
   config.vm.box = "ubuntu-12.04-omnibus-chef"
   config.vm.box_url = "http://grahamc.com/vagrant/ubuntu-12.04-omnibus-chef.box"
