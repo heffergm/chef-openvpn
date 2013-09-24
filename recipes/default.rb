@@ -88,9 +88,9 @@ unless ::File.exists?("#{key_dir}/dh#{key_size}.pem")
 end
 
 bash "openvpn-crl" do
-  environment("KEY_CN" => "#{node['openvpn']['key']['org']} CA")
+  environment("KEY_CN" => "#{node["openvpn"]["key"]["org"]} CA")
   code <<-EOF
-    openssl ca -gencrl -out #{node[:openvpn[:crl]} -config #{node["openvpn"]["key_dir"]}/openssl.cnf
+    openssl ca -gencrl -out #{node["openvpn"]["crl"]} -config #{node["openvpn"]["key_dir"]}/openssl.cnf
   EOF
   not_if { ::File.exists?(node["openvpn"]["crl"]) }
 end
