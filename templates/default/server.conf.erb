@@ -49,6 +49,6 @@ verb 1  # don't spam the log with messages.
 mute 10 # suppress identical messages > 10 occurances.
 
 # crl
-crl-verify <%= node['openvpn']['crl_dir'] %>/crl.pem
+crl-verify <%= node['openvpn']['crl'] %>
 
 script-security <%= node["openvpn"]["script_security"] %>

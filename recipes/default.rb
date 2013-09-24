@@ -21,7 +21,6 @@ routes = node['openvpn']['routes']
 routes << node['openvpn']['push'] if node['openvpn'].attribute?('push')
 node.default['openvpn']['routes'] = routes.flatten
 
-crl_dir = node["openvpn"]["crl_dir"]
 key_dir = node["openvpn"]["key_dir"]
 key_size = node["openvpn"]["key"]["size"]
 
@@ -33,19 +32,6 @@ directory key_dir do
   owner "root"
   group "root"
   mode 0755
-end
-
-directory crl_dir do
-  owner "root"
-  group "root"
-  mode 0755
-end
-
-file "#{node[:openvpn][:crl_dir]}/crl.pem" do
-  owner "root"
-  group "root"
-  mode 0755
-  action :create_if_missing
 end
 
 directory "/etc/openvpn/easy-rsa" do
@@ -99,6 +85,14 @@ unless ::File.exists?("#{key_dir}/dh#{key_size}.pem")
     group "root"
     mode 0600
   end
+end
+
+bash "openvpn-crl" do
+  environment("KEY_CN" => "#{node['openvpn']['key']['org']} CA")
+  code <<-EOF
+    openssl ca -gencrl -out #{node[:openvpn[:crl]} -config #{node["openvpn"]["key_dir"]}/openssl.cnf
+  EOF
+  not_if { ::File.exists?(node["openvpn"]["crl"]) }
 end
 
 bash "openvpn-initca" do
