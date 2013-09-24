@@ -32,7 +32,7 @@ end
 directory key_dir do
   owner "root"
   group "root"
-  mode 0700
+  mode 0755
 end
 
 directory crl_dir do
