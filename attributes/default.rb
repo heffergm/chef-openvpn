@@ -32,6 +32,7 @@ default["openvpn"]["signing_ca_cert"] = "#{node["openvpn"]["key_dir"]}/ca.crt"
 default["openvpn"]["routes"] = []
 default["openvpn"]["script_security"] = 1
 default["openvpn"]["user"] = "nobody"
+default["openvpn"]["tls_auth"] = nil
 case platform
 when "redhat", "centos", "fedora"
   default["openvpn"]["group"] = "nobody"

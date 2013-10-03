@@ -26,7 +26,9 @@ ca   <%= node['openvpn']['key_dir'] %>/ca.crt
 key  <%= node['openvpn']['key_dir'] %>/server.key # This file should be kept secret.
 cert <%= node['openvpn']['key_dir'] %>/server.crt
 dh   <%= node['openvpn']['key_dir'] %>/dh<%= node["openvpn"]["key"]["size"] %>.pem
+<% if node['openvpn']['tls_auth'] -%>
 tls-auth <%= node['openvpn']['key_dir'] %>/ta.key 0
+<% end -%>
 
 
 ifconfig-pool-persist /etc/openvpn/ipp.txt
